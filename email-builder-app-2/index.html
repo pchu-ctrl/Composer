@@ -22,14 +22,14 @@
   <header>
     <h1>Email Builder</h1>
     <div class="nav">
-      <button class="btn secondary" id="btnNavHome" data-nav="#/">Home</button>
-      <button class="btn secondary" id="btnNavProjects" data-nav="#/projects">Projects</button>
-      <button class="btn secondary" id="btnNavModules" data-nav="#/modules">Modules</button>
+      <a class="btn secondary" href="#/">Home</a>
+      <a class="btn secondary" href="#/projects">Projects</a>
+      <a class="btn secondary" href="#/modules">Modules</a>
       <span id="userChip" class="user-chip hidden"></span>
       <button id="btnSignOut" class="btn secondary hidden" title="Sign out">Sign out</button>
       <button id="btnCopy" class="btn hidden" title="Copy Final HTML from Composer">Copy HTML</button>
     </div>
-  
+
   </header>
   <div id="statusBar" class="status hidden" role="status" aria-live="polite"></div>
 
@@ -38,8 +38,8 @@
     <!-- HOME -->
     <section id="view-home" class="home-wrap">
       <div class="home-grid">
-        <div class="home-tile" id="btnHomeProjects" data-nav="#/projects">📄 Projects</div>
-        <div class="home-tile" id="btnHomeModules" data-nav="#/modules">🧩 Modules</div>
+        <a class="home-tile" href="#/projects">📄 Projects</a>
+        <a class="home-tile" href="#/modules">🧩 Modules</a>
       </div>
     </section>
 
@@ -56,7 +56,7 @@
     <!-- COMPOSER (per project) -->
     <section id="view-composer" class="card hidden">
       <div class="bar">
-        <button class="btn ghost" id="btnNavProjects" data-nav="#/projects">← Back to Projects</button>
+        <a class="btn ghost" href="#/projects">← Back to Projects</a>
         <span id="composerProjectName" class="pill"></span>
         <span class="pill">Drag to reorder • Names & values scroll together • Colors auto-normalize</span>
       </div>
