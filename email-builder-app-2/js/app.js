@@ -83,9 +83,10 @@ window.addEventListener('unhandledrejection', (e) => { console.warn('[unhandled 
     const btnDeleteModule = $("#btnDeleteModule");
 
     /* ===== Router ===== */
-    function go(hash){ location.hash = hash; }
-    window.addEventListener("hashchange", ()=>{ setStatus('Navigating…','warn'); bindNav();
-      renderRoute(); });
+      function go(hash){ location.hash = hash; }
+      window.addEventListener("hashchange", renderRoute);
+      if (!location.hash) location.hash = "#/";
+      renderRoute();
 
 document.addEventListener('click', (e)=>{
   const t = e.target.closest('[data-nav]');
@@ -96,8 +97,10 @@ document.addEventListener('click', (e)=>{
 });
 
 
-    function renderRoute(){
-  try{
+      function renderRoute(){
+    setStatus('Navigating…','warn');
+    bindNav();
+    try{
       // hide all
       Object.values(views).forEach(v => v.classList.add("hidden"));
       btnCopy.classList.add("hidden");
@@ -723,3 +726,24 @@ a { color: {{brandColor}}; }
 // Rebind nav when DOM changes (e.g., after patches)
 const __navObserver = new MutationObserver(() => bindNav());
 __navObserver.observe(document.documentElement, { childList:true, subtree:true });
+
+(function () {
+  function $(s){return document.querySelector(s);}
+  function show(v){
+    const views = ["#view-auth", "#view-home", "#view-projects", "#view-composer", "#view-modules"]
+      .map(id => document.querySelector(id))
+      .filter(Boolean);
+    views.forEach(el => el.classList.add("hidden"));
+    v && v.classList.remove("hidden");
+  }
+  function simpleRoute(){
+    const h = location.hash || "#/";
+    if (h.startsWith("#/projects")) return show($("#view-projects"));
+    if (h.startsWith("#/modules"))  return show($("#view-modules"));
+    if (h.startsWith("#/auth"))     return show($("#view-auth"));
+    return show($("#view-home"));
+  }
+  window.addEventListener("hashchange", simpleRoute);
+  if (!location.hash) location.hash = "#/";
+  simpleRoute();
+})();
