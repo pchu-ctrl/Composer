@@ -23,6 +23,23 @@ function showStatus(msg){
   }
 }
 
+// Inline status bar helper used throughout the app
+function setStatus(msg, type){
+  const bar = document.getElementById('statusBar');
+  if(!bar) return;
+
+  // Reset previous state
+  bar.classList.remove('hidden', 'ok', 'warn', 'err');
+  bar.textContent = msg || '';
+
+  // Apply new type if provided; hide if message empty
+  if(!msg){
+    bar.classList.add('hidden');
+  } else if(type){
+    bar.classList.add(type);
+  }
+}
+
 
 // Global error guards to avoid silent failures that freeze routing
 window.addEventListener('error', (e) => { console.warn('[app error]', e.message); showStatus('[Error] ' + e.message); });
