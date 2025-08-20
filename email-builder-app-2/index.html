@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Builder — Projects & Modules</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .status{margin:12px 16px 0;padding:10px 14px;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 8px 24px rgba(15,23,42,.06);font-size:14px;display:flex;align-items:center;gap:8px;background:#fffbeb;color:#92400e}
+    .status.hidden{display:none}
+    .status.ok{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}
+    .status.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
+    .status.err{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+  </style>
+</head>
+<body>
+  <noscript>This app requires JavaScript to run.</noscript>>
+<div id="status-banner" style="position:fixed;top:0;left:0;width:100%;background:#ffdddd;color:#900;padding:5px;font-size:14px;z-index:9999;display:none"></div>
+
+  <header>
+    <h1>Email Builder</h1>
+    <div class="nav">
+      <button class="btn secondary" id="btnNavHome" data-nav="#/">Home</button>
+      <button class="btn secondary" id="btnNavProjects" data-nav="#/projects">Projects</button>
+      <button class="btn secondary" id="btnNavModules" data-nav="#/modules">Modules</button>
+      <span id="userChip" class="user-chip hidden"></span>
+      <button id="btnSignOut" class="btn secondary hidden" title="Sign out">Sign out</button>
+      <button id="btnCopy" class="btn hidden" title="Copy Final HTML from Composer">Copy HTML</button>
+    </div>
+  
+  </header>
+  <div id="statusBar" class="status hidden" role="status" aria-live="polite"></div>
+
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="home-wrap">
+      <div class="home-grid">
+        <div class="home-tile" id="btnHomeProjects" data-nav="#/projects">📄 Projects</div>
+        <div class="home-tile" id="btnHomeModules" data-nav="#/modules">🧩 Modules</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS LIST -->
+    <section id="view-projects" class="card hidden">
+      <div class="bar">
+        <strong>Projects</strong>
+        <div style="flex:1"></div>
+        <button class="btn" onclick="newProject()">New Project</button>
+      </div>
+      <div id="projectsList" class="list"></div>
+    </section>
+
+    <!-- COMPOSER (per project) -->
+    <section id="view-composer" class="card hidden">
+      <div class="bar">
+        <button class="btn ghost" id="btnNavProjects" data-nav="#/projects">← Back to Projects</button>
+        <span id="composerProjectName" class="pill"></span>
+        <span class="pill">Drag to reorder • Names & values scroll together • Colors auto-normalize</span>
+      </div>
+
+      <div class="grid">
+        <!-- Left 40%: Names + Values inside shared scroll -->
+        <div class="nv">
+          <div class="nv-head">
+            <h3>Variable Names</h3>
+            <h3>Values</h3>
+          </div>
+          <div class="nv-body">
+            <div id="nvGrid" class="nv-grid"></div>
+
+            <!-- Add module controls under existing modules -->
+            <div style="padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="grid-column:1 / span 2;">
+                <div class="pill" style="display:inline-block">Add a module below</div>
+              </div>
+              <div><select id="addSelect"></select></div>
+              <div><button class="btn ghost" id="btnAdd">Add Module</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 60%: Preview -->
+        <div class="preview-wrap">
+          <div class="preview-head"><h3>Combined Preview</h3></div>
+          <div id="previewCol" class="preview"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULES (Repo / Code Editor) -->
+    <section id="view-modules" class="card hidden">
+      <div class="bar">
+        <strong>Module Repo</strong>
+        <div style="flex:1"></div>
+        <button class="btn" id="btnNew">New</button>
+      </div>
+      <div class="repo">
+        <aside class="repo-list"><div id="repoList"></div></aside>
+        <section class="editor">
+          <div class="row">
+            <input id="modName" type="text" placeholder="Module name (e.g., Hero CTA)" />
+            <span id="modIdBadge" class="pill">New</span>
+            <div class="nav">
+              <button class="btn" id="btnSaveModule">Save</button>
+              <button class="btn danger" id="btnDeleteModule">Delete</button>
+            </div>
+          </div>
+          <textarea id="modCode" placeholder="Paste module HTML with {{variables}} here..."></textarea>
+          <div class="muted">Tip: use <code>{{headline}}</code>, <code>{{ctaUrl}}</code>, <code>{{brandColor}}</code>.
+            Hex colors can be typed with or without <code>#</code>; we display with <code>#</code>.</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  
+  <script src="js/app.js"></script>
+</body>
+</html>

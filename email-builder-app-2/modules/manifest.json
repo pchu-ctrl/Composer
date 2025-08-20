@@ -1,0 +1,56 @@
+{
+  "modules": [
+    {
+      "name": "HEADER \u2014 Wrapper + Preheader + Logo",
+      "file": "header.html"
+    },
+    {
+      "name": "Hero \u2014 Full Image",
+      "file": "hero.html"
+    },
+    {
+      "name": "Section \u2014 Headline + Subhead + CTA",
+      "file": "headline-cta.html"
+    },
+    {
+      "name": "2-Column \u2014 Text + Text",
+      "file": "two-column.html"
+    },
+    {
+      "name": "2-Column \u2014 Image + Text",
+      "file": "two-col-image-text.html"
+    },
+    {
+      "name": "3-Column \u2014 Feature Icons",
+      "file": "features-3col.html"
+    },
+    {
+      "name": "Media \u2014 Image Left, Text Right",
+      "file": "media-left.html"
+    },
+    {
+      "name": "Media \u2014 Text Left, Image Right",
+      "file": "media-right.html"
+    },
+    {
+      "name": "Banner \u2014 CTA Strip",
+      "file": "banner.html"
+    },
+    {
+      "name": "Social Proof \u2014 Testimonial",
+      "file": "testimonial.html"
+    },
+    {
+      "name": "Grid \u2014 Products 2x2",
+      "file": "products-grid-2x2.html"
+    },
+    {
+      "name": "Section \u2014 Rich Text",
+      "file": "rich-text.html"
+    },
+    {
+      "name": "FOOTER \u2014 Social + Legal + Close",
+      "file": "footer.html"
+    }
+  ]
+}
